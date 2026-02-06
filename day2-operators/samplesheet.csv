@@ -1,0 +1,4 @@
+sample_id,fastq1,fastq2,condition
+sample1,reads1_R1.fq,reads1_R2.fq,control
+sample2,reads2_R1.fq,reads2_R2.fq,treated
+sample3,reads3_R1.fq,reads3_R2.fq,control
