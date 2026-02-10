@@ -1,0 +1,4 @@
+sample: sample_b
+attempt: 1
+cpus: 4
+memory: 2 GB

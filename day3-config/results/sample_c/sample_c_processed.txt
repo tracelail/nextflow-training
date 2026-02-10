@@ -1,0 +1,4 @@
+Sample: sample_c
+Using 2 CPUs
+Memory: 500 MB
+Sample C data
