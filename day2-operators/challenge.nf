@@ -9,8 +9,8 @@ workflow {
         ['patient2', 'normal', 'file5.bam']
     )
     // YOUR CODE HERE
-    // .filter { id, type, file -> ... }
-    // .map { id, type, file -> ... }
-    // .groupTuple()
-    // .view()
+    .filter { id, type, file -> type == 'tumor' }
+    .map { id, type, file -> [id, file] }
+    .groupTuple()
+    .view()
 }
