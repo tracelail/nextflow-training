@@ -1,0 +1,7 @@
+=== Greeting Analysis ===
+File: greeting_Bob.txt
+Characters: 33
+Words: 5
+Lines: 1
+Enthusiasm: HIGH
+Special Guest: NO

@@ -1,0 +1,7 @@
+=== Greeting Analysis ===
+File: greeting_Alice.txt
+Characters: 35
+Words: 5
+Lines: 1
+Enthusiasm: HIGH
+Special Guest: YES
