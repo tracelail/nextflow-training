@@ -1,0 +1,42 @@
+name: fastqc
+description: Run FastQC on sequencing reads
+keywords:
+  - quality control
+  - qc
+  - sequencing
+tools:
+  - fastqc:
+      description: Quality control tool for high throughput sequence data
+      homepage: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+      documentation: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
+      licence: ["GPL-3.0-or-later"]
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'sample1', single_end:false ]
+  - reads:
+      type: file
+      description: Input sequencing reads (FASTQ format)
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'sample1', single_end:false ]
+  - html:
+      type: file
+      description: FastQC HTML report
+      pattern: "*_fastqc.html"
+  - zip:
+      type: file
+      description: FastQC report archive
+      pattern: "*_fastqc.zip"
+
+authors:
+  - "@author1"
+  - "@author2"

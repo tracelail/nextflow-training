@@ -1,0 +1,4 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	sample1_sampled	/home/trace/projects/nextflow-training/session-5-containers/work/15/75c04e47241ad4fd05bd6ec3e65987/sample1_sampled_fastqc.zip
+FastQC	all_sections	sample3_sampled	/home/trace/projects/nextflow-training/session-5-containers/work/15/75c04e47241ad4fd05bd6ec3e65987/sample3_sampled_fastqc.zip
+FastQC	all_sections	sample2_sampled	/home/trace/projects/nextflow-training/session-5-containers/work/15/75c04e47241ad4fd05bd6ec3e65987/sample2_sampled_fastqc.zip

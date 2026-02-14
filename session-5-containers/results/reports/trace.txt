@@ -1,0 +1,10 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+2	5d/e91b24	3486968	SEQTK_SAMPLE (sample2)	FAILED	1	2026-02-13 13:08:00.010	14.8s	14.7s	-	-	-	-	-
+3	5e/0620a6	3487017	SEQTK_SAMPLE (sample1)	FAILED	1	2026-02-13 13:08:00.053	14.8s	14.8s	-	-	-	-	-
+1	d3/3eb686	3486991	SEQTK_SAMPLE (sample3)	FAILED	1	2026-02-13 13:08:00.036	15s	14.9s	-	-	-	-	-
+5	ea/910d08	3487643	SEQTK_SAMPLE (sample1)	FAILED	1	2026-02-13 13:08:14.894	678ms	617ms	-	-	-	-	-
+4	07/ef1b38	3487630	SEQTK_SAMPLE (sample2)	FAILED	1	2026-02-13 13:08:14.873	803ms	724ms	-	-	-	-	-
+6	83/e55396	3487791	SEQTK_SAMPLE (sample3)	FAILED	1	2026-02-13 13:08:15.067	950ms	881ms	-	-	-	-	-
+7	0f/4fc4d4	3487970	SEQTK_SAMPLE (sample1)	FAILED	1	2026-02-13 13:08:15.585	838ms	752ms	-	-	-	-	-
+8	0e/20d8d2	3488051	SEQTK_SAMPLE (sample2)	ABORTED	-	2026-02-13 13:08:15.695	-	-	-	-	-	-	-
+9	2a/f51a8d	3488224	SEQTK_SAMPLE (sample3)	ABORTED	-	2026-02-13 13:08:16.038	-	-	-	-	-	-	-
