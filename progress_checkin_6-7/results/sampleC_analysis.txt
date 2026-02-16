@@ -1,0 +1,1 @@
+Sample sampleC has 7 characters.

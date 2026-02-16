@@ -1,0 +1,3 @@
+Sample sampleB has 7 characters.
+Sample sampleA has 7 characters.
+Sample sampleC has 7 characters.
