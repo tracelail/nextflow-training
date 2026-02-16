@@ -1,0 +1,5 @@
+Analyzing sample1
+Memory: 1 GB
+CPUs: 1
+Container: ubuntu:22.04
+Analysis complete

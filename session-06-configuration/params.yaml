@@ -1,0 +1,4 @@
+greeting: "Hola"
+name: "Nextflow"
+repetitions: 2
+outdir: "spanish_results"

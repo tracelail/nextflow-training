@@ -1,0 +1,17 @@
+Summary Report
+=============
+Analyzing sample2
+Memory: 1 GB
+CPUs: 1
+Container: ubuntu:22.04
+Analysis complete
+Analyzing sample3
+Memory: 1 GB
+CPUs: 1
+Container: ubuntu:22.04
+Analysis complete
+Analyzing sample1
+Memory: 1 GB
+CPUs: 1
+Container: ubuntu:22.04
+Analysis complete

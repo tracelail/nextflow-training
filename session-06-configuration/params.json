@@ -1,0 +1,6 @@
+{
+  "greeting": "Bonjour",
+  "name": "Configuration",
+  "repetitions": 4,
+  "outdir": "french_results"
+}
