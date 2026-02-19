@@ -1,0 +1,39 @@
+# Sample Data for Session 7 Exercises
+
+This file contains example filenames you can use for testing your parsing functions.
+
+## Simple Format (Exercise 4)
+sample1_tumor_R1.fastq.gz
+sample1_tumor_R2.fastq.gz
+sample2_normal_R1.fastq.gz
+sample2_normal_R2.fastq.gz
+sample3_tumor_R1.fastq.gz
+sample3_tumor_R2.fastq.gz
+
+## Illumina Format (Exercise 5)
+PatientA_S1_L001_R1_001.fastq.gz
+PatientA_S1_L001_R2_001.fastq.gz
+PatientB_S2_L001_R1_001.fastq.gz
+PatientB_S2_L001_R2_001.fastq.gz
+TumorC_S3_L002_R1_001.fastq.gz
+TumorC_S3_L002_R2_001.fastq.gz
+Control_S4_L001_R1_001.fastq.gz
+
+## Complex Format (Multi-component)
+P001_T0_Rep1_Tumor_R1.fastq.gz
+P001_T0_Rep1_Tumor_R2.fastq.gz
+P001_T1_Rep1_Normal_R1.fastq.gz
+P001_T1_Rep1_Normal_R2.fastq.gz
+P002_T0_Rep2_Tumor_R1.fastq.gz
+
+## Multi-lane Samples
+Sample1_S1_L001_R1_001.fastq.gz
+Sample1_S1_L001_R2_001.fastq.gz
+Sample1_S1_L002_R1_001.fastq.gz
+Sample1_S1_L002_R2_001.fastq.gz
+
+## Edge Cases
+sample_with_very_long_name_R1.fastq.gz
+short_R1.fastq.gz
+Sample-With-Dashes_R1.fastq.gz
+123_numeric_sample_R1.fastq.gz
