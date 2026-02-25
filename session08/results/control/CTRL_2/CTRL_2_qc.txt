@@ -1,0 +1,7 @@
+QC Summary for CTRL_2
+Condition   : control
+Replicate   : 2
+Strandedness: forward
+Single-end  : false
+Paired group: control_rep2
+Reads       : R1: CTRL_2_R1.fastq  R2: CTRL_2_R2.fastq

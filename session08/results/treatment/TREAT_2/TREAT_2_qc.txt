@@ -1,0 +1,7 @@
+QC Summary for TREAT_2
+Condition   : treatment
+Replicate   : 2
+Strandedness: reverse
+Single-end  : false
+Paired group: treatment_rep2
+Reads       : R1: TREAT_2_R1.fastq  R2: TREAT_2_R2.fastq

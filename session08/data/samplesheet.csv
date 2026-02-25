@@ -1,0 +1,7 @@
+sample_id,condition,replicate,single_end,strandedness,fastq_1,fastq_2
+CTRL_1,control,1,false,forward,data/reads/CTRL_1_R1.fastq,data/reads/CTRL_1_R2.fastq
+CTRL_2,control,2,false,forward,data/reads/CTRL_2_R1.fastq,data/reads/CTRL_2_R2.fastq
+CTRL_3,control,3,false,forward,data/reads/CTRL_3_R1.fastq,data/reads/CTRL_3_R2.fastq
+TREAT_1,treatment,1,false,reverse,data/reads/TREAT_1_R1.fastq,data/reads/TREAT_1_R2.fastq
+TREAT_2,treatment,2,false,reverse,data/reads/TREAT_2_R1.fastq,data/reads/TREAT_2_R2.fastq
+TREAT_3,treatment,3,false,reverse,data/reads/TREAT_3_R1.fastq,data/reads/TREAT_3_R2.fastq

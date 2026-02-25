@@ -1,0 +1,8 @@
+=== Sample Report ===
+ID         : CTRL_2
+Condition  : control
+Replicate  : 2
+Strandedness: forward
+Read count : 8
+R1 file    : CTRL_2_R1.fastq
+R2 file    : CTRL_2_R2.fastq

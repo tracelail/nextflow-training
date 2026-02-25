@@ -1,0 +1,8 @@
+=== Sample Report ===
+ID         : TREAT_2
+Condition  : treatment
+Replicate  : 2
+Strandedness: reverse
+Read count : 8
+R1 file    : TREAT_2_R1.fastq
+R2 file    : TREAT_2_R2.fastq

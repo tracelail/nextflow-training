@@ -1,0 +1,7 @@
+QC Summary for CTRL_3
+Condition   : control
+Replicate   : unknown
+Strandedness: unstranded
+Single-end  : false
+Paired group: control_repunknown
+Reads       : R1: CTRL_3_R1.fastq  R2: CTRL_3_R2.fastq

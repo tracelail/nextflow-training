@@ -1,0 +1,9 @@
+==========================================
+ Final Report: TREAT_2
+==========================================
+Condition    : treatment
+Replicate    : 2
+Strandedness : reverse
+Single-end   : false
+Read count   : 8
+Quality tier : standard

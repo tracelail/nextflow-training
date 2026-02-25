@@ -1,0 +1,7 @@
+QC Summary for TREAT_3
+Condition   : treatment
+Replicate   : unknown
+Strandedness: unstranded
+Single-end  : true
+Paired group: treatment_repunknown
+Reads       : R1: TREAT_3_R1.fastq

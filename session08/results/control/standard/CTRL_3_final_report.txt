@@ -1,0 +1,9 @@
+==========================================
+ Final Report: CTRL_3
+==========================================
+Condition    : control
+Replicate    : 3
+Strandedness : forward
+Single-end   : false
+Read count   : 8
+Quality tier : standard
