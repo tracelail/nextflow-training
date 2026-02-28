@@ -1,0 +1,7 @@
+sample_id,type,condition,fastq_1,fastq_2
+SAMPLE_A,tumor,treated,data/reads/SAMPLE_A_R1.fastq.gz,data/reads/SAMPLE_A_R2.fastq.gz
+SAMPLE_B,tumor,treated,data/reads/SAMPLE_B_R1.fastq.gz,data/reads/SAMPLE_B_R2.fastq.gz
+SAMPLE_C,tumor,untreated,data/reads/SAMPLE_C_R1.fastq.gz,data/reads/SAMPLE_C_R2.fastq.gz
+SAMPLE_D,normal,treated,data/reads/SAMPLE_D_R1.fastq.gz,data/reads/SAMPLE_D_R2.fastq.gz
+SAMPLE_E,normal,treated,data/reads/SAMPLE_E_R1.fastq.gz,data/reads/SAMPLE_E_R2.fastq.gz
+SAMPLE_F,normal,untreated,data/reads/SAMPLE_F_R1.fastq.gz,data/reads/SAMPLE_F_R2.fastq.gz

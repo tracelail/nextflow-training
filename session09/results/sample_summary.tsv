@@ -1,0 +1,6 @@
+SAMPLE_C	tumor	untreated
+SAMPLE_E	normal	treated
+SAMPLE_A	tumor	treated
+SAMPLE_D	normal	treated
+SAMPLE_B	tumor	treated
+SAMPLE_F	normal	untreated

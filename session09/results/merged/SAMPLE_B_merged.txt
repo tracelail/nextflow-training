@@ -1,0 +1,2 @@
+Sample: SAMPLE_B
+Merged VCFs: SAMPLE_B_chr1:1-10000.vcf, SAMPLE_B_chr2:1-10000.vcf, SAMPLE_B_chrX:1-10000.vcf, SAMPLE_B_chr3:1-10000.vcf
