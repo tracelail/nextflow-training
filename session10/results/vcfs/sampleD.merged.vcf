@@ -1,0 +1,11 @@
+=== Merged VCF for sampleD (normal) ===
+
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}

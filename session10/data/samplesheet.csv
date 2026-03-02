@@ -1,0 +1,5 @@
+sample_id,type,fastq
+sampleA,tumor,sampleA_R1.fastq
+sampleB,normal,sampleB_R1.fastq
+sampleC,tumor,sampleC_R1.fastq
+sampleD,normal,sampleD_R1.fastq

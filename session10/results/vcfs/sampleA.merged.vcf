@@ -1,0 +1,11 @@
+=== Merged VCF for sampleA (tumor) ===
+
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}
+Genotyping !{meta.id} on interval !{interval}
+BAM: !{bam}
+Interval: !{interval}
