@@ -1,0 +1,5 @@
+It was the best of times it was the worst of times.
+The work directory contains .command.sh and .command.err files.
+This is sample C demonstrating parallel task execution.
+Treatment group: second replicate of experimental condition.
+In the beginning God created the heavens and the earth.

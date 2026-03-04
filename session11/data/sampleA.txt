@@ -1,0 +1,5 @@
+The quick brown fox jumps over the lazy dog.
+Nextflow pipelines are reproducible and scalable.
+This is sample A used for cache and resume training.
+Control group: baseline measurements recorded here.
+Four score and seven years ago our fathers brought forth.

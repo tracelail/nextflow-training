@@ -1,0 +1,14 @@
+task_id	name	status	exit	duration	realtime	cpus	memory	workdir
+4	PREPARE_SAMPLES (sampleB)	COMPLETED	0	267ms	9ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/6a/521c6f60b5b560a86f8f0ec4542e48
+5	PREPARE_SAMPLES (sampleC)	COMPLETED	0	184ms	11ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/5b/717b64bf60313cd25f733e7381c1b8
+8	ANALYZE_SAMPLE (sampleD)	COMPLETED	0	282ms	35ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/54/f329ef42ff2fb4a184981daf5ef1ab
+6	ANALYZE_SAMPLE (sampleC)	COMPLETED	0	306ms	23ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/03/1e15a53e18dcc1931693b83aca6be0
+7	PREPARE_SAMPLES (sampleD)	COMPLETED	0	365ms	13ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/f3/8a1eefff21336def9a99c352d2c4c2
+2	PREPARE_SAMPLES (sampleA)	COMPLETED	0	357ms	29ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/8b/c06203871c1e31bff1280f35e62c4f
+1	ANALYZE_SAMPLE (sampleA)	COMPLETED	0	327ms	24ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/71/5d1189cfe6fd6b68766f04a6bbf212
+3	ANALYZE_SAMPLE (sampleB)	COMPLETED	0	440ms	27ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/1c/37b44f54750b0f5d2a399323d03ce1
+9	SCORE_SAMPLE (sampleD)	COMPLETED	0	283ms	21ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/da/41b9ad177eaf69af07e65149388cbc
+11	SCORE_SAMPLE (sampleA)	COMPLETED	0	207ms	49ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/20/a7adf61b14237dd92755d6ddd0e78c
+10	SCORE_SAMPLE (sampleC)	COMPLETED	0	270ms	38ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/c7/34b693c214c7033aa588235679b7b6
+12	SCORE_SAMPLE (sampleB)	COMPLETED	0	186ms	13ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/0f/d048ab92e0e1877cdc21be38d9af77
+13	AGGREGATE_RESULTS	COMPLETED	0	124ms	7ms	1	512 MB	/home/trace/projects/nextflow-training/session11/work/1d/7f7ab887be2e6b897e14415c2f48a7

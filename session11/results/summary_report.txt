@@ -1,0 +1,14 @@
+=== Pipeline Summary Report ===
+Generated: Wed Mar  4 10:00:42 AM EST 2026
+
+--- Line counts ---
+sampleD: 5 lines
+sampleA: 5 lines
+sampleC: 5 lines
+sampleB: 5 lines
+
+--- First lines ---
+The quick brown fox jumps over the lazy dog.
+It was the best of times it was the worst of times.
+Call me Ishmael some years ago never mind how long precisely.
+To be or not to be that is the question whether tis nobler.

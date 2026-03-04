@@ -1,0 +1,5 @@
+Call me Ishmael some years ago never mind how long precisely.
+Exit code 127 means command not found check your PATH or container.
+This is sample D showing metadata propagation through processes.
+Control group: second replicate of baseline measurements.
+It is a truth universally acknowledged that a single man in possession.

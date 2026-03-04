@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nextflow Provenance Report</title>
+  <style>
+    body        { font-family: monospace; background: #1e1e2e; color: #cdd6f4; margin: 0; padding: 2rem; }
+    h1          { color: #89b4fa; border-bottom: 1px solid #45475a; padding-bottom: 0.5rem; }
+    .task-card  { background: #313244; border-left: 4px solid #89b4fa; border-radius: 4px;
+                  margin-bottom: 1rem; padding: 1rem 1.25rem; }
+    .task-card.COMPLETED { border-left-color: #a6e3a1; }
+    .task-card.FAILED    { border-left-color: #f38ba8; }
+    .task-card.CACHED    { border-left-color: #fab387; }
+    h2          { margin: 0 0 0.5rem; font-size: 1rem; color: #cba6f7; }
+    table       { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+    td          { padding: 0.15rem 0.5rem; vertical-align: top; }
+    td:first-child { color: #6c7086; width: 110px; }
+    pre         { background: #1e1e2e; padding: 0.5rem; border-radius: 3px;
+                  overflow-x: auto; font-size: 0.8rem; white-space: pre-wrap;
+                  word-break: break-all; margin: 0.5rem 0 0; color: #a6e3a1; }
+    .exit-0     { color: #a6e3a1; }
+    .exit-other { color: #f38ba8; }
+  </style>
+</head>
+<body>
+  <h1>&#128196; Nextflow Provenance Report</h1>
+
+<div class="task-card ${status}">
+  <h2>${name}</h2>
+  <table>
+    <tr><td>Status</td>    <td>${status}</td></tr>
+    <tr><td>Exit code</td> <td class="${exit == 0 ? 'exit-0' : 'exit-other'}">${exit}</td></tr>
+    <tr><td>Duration</td>  <td>${duration}</td></tr>
+    <tr><td>Container</td> <td>${container ?: '(none — native)'}</td></tr>
+    <tr><td>Work dir</td>  <td>${workdir}</td></tr>
+  </table>
+  <pre>${script}</pre>
+</div>
+
+</body>
+</html>

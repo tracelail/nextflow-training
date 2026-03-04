@@ -1,0 +1,5 @@
+To be or not to be that is the question whether tis nobler.
+Nextflow caches task results using a 128-bit hash fingerprint.
+This is sample B for testing the resume functionality.
+Treatment group: experimental condition applied here.
+All that glitters is not gold often have you heard that told.

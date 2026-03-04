@@ -1,0 +1,5 @@
+sample_id,text_file,type
+sampleA,data/sampleA.txt,control
+sampleB,data/sampleB.txt,treatment
+sampleC,data/sampleC.txt,treatment
+sampleD,data/sampleD.txt,control
