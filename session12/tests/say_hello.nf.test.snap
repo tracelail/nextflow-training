@@ -1,0 +1,31 @@
+{
+    "SAY_HELLO output should match snapshot": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "snap_test",
+                            "language": "English"
+                        },
+                        "snap_test: Hello"
+                    ]
+                ],
+                "result": [
+                    [
+                        {
+                            "id": "snap_test",
+                            "language": "English"
+                        },
+                        "snap_test: Hello"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-06T09:24:11.924027111"
+    }
+}

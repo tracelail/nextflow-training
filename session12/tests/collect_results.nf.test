@@ -1,0 +1,72 @@
+/*
+ * tests/collect_results.nf.test
+ *
+ * Process-level tests for COLLECT_RESULTS.
+ *
+ * Demonstrates:
+ *   - Passing a collected list as a single val input
+ *   - Asserting on a val (string) output rather than a path
+ *   - Using with() for scoped assertions
+ */
+
+nextflow_process {
+
+    name    "Test process: COLLECT_RESULTS"
+    script  "../modules/local/collect_results.nf"
+    process "COLLECT_RESULTS"
+
+    // ── Test 1: Basic — summary string is produced ─────────────────────────
+    test("COLLECT_RESULTS should produce a summary from two inputs") {
+
+        when {
+            process {
+                // COLLECT_RESULTS receives the result of .collect() upstream —
+                // a single list value, not individual channel elements.
+                // We replicate that here by wrapping tuples in a list literal.
+                """
+                input[0] = [
+                    [ [id: 'sample_01', language: 'English'], 'SAMPLE_01: HELLO'   ],
+                    [ [id: 'sample_02', language: 'French' ], 'SAMPLE_02: BONJOUR' ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            with(process.out.summary) {
+                // There is exactly one summary string
+                assert size() == 1
+
+                def result = get(0)
+                // It should report the correct count
+                assert result.contains("Processed 2 greetings")
+                // It should contain both uppercased greetings
+                assert result.contains("SAMPLE_01: HELLO")
+                assert result.contains("SAMPLE_02: BONJOUR")
+            }
+        }
+    }
+
+    // ── Test 2: Snapshot the summary output ────────────────────────────────
+    test("COLLECT_RESULTS summary should match snapshot") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ [id: 'sample_01', language: 'English'], 'SAMPLE_01: HELLO'   ],
+                    [ [id: 'sample_02', language: 'French' ], 'SAMPLE_02: BONJOUR' ],
+                    [ [id: 'sample_03', language: 'Spanish'], 'SAMPLE_03: HOLA'    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
+    }
+}

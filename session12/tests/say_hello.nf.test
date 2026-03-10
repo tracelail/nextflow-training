@@ -1,0 +1,131 @@
+/*
+ * tests/say_hello.nf.test
+ *
+ * Process-level tests for SAY_HELLO.
+ *
+ * Process tests are MORE isolated than pipeline tests:
+ *   - Only SAY_HELLO itself runs — no upstream or downstream processes
+ *   - You supply input directly in the when { process {} } block
+ *   - You assert on process.out.<emit_name> in the then {} block
+ *
+ * Key concepts demonstrated:
+ *   - nextflow_process {} block
+ *   - input[0] array syntax for feeding the process
+ *   - process.success, process.out assertions
+ *   - Accessing named emit channels: process.out.result
+ *   - snapshot testing at the process level
+ */
+
+nextflow_process {
+
+    name    "Test process: SAY_HELLO"
+    script  "../modules/local/say_hello.nf"
+    process "SAY_HELLO"
+
+    // ── Test 1: Basic — process runs and emits output ──────────────────────
+    test("SAY_HELLO should format a greeting correctly") {
+
+        when {
+            process {
+                // input[0] maps to the first (and only) declared input of SAY_HELLO:
+                //   tuple val(meta), val(greeting)
+                // We construct the tuple here just like the workflow would.
+                """
+                input[0] = [ [id: 'sample_01', language: 'English'], 'Hello' ]
+                """
+            }
+        }
+
+        then {
+            // Process must succeed
+            assert process.success
+
+            // The result emit should have exactly 1 element
+            assert process.out.result != null
+            assert process.out.result.size() == 1
+
+            // The emitted tuple is [meta, formatted_string]
+            // .get(0) retrieves the first (only) element of the output channel
+            // That element is itself a list: [meta_map, string]
+            def output = process.out.result.get(0)
+            assert output[0].id      == 'sample_01'
+            assert output[1]         == 'sample_01: Hello'
+        }
+    }
+
+    // ── Test 2: Intermediate — multiple inputs ─────────────────────────────
+    test("SAY_HELLO should handle multiple samples") {
+
+        when {
+            process {
+                // When you pass a channel of multiple elements, each becomes
+                // a separate task execution. Use channel.of() or a list.
+                """
+                input[0] = channel.of(
+                    [ [id: 'sample_01', language: 'English'], 'Hello'   ],
+                    [ [id: 'sample_02', language: 'French' ], 'Bonjour' ],
+                    [ [id: 'sample_03', language: 'Spanish'], 'Hola'    ],
+                    [ [id: 'sample_04', language: 'Italian'], 'Ciao' ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            // Three inputs → three output elements
+            assert process.out.result.size() == 4
+
+            // Collect all the formatted strings and sort for a deterministic check
+            def formatted = process.out.result
+                .collect { item -> item[1] }
+                .sort()
+
+            assert formatted == [
+                'sample_01: Hello',
+                'sample_02: Bonjour',
+                'sample_03: Hola',
+                'sample_04: Ciao'
+            ]
+        }
+    }
+
+    // ── Test 3: Snapshot — process output regression test ─────────────────
+    test("SAY_HELLO output should match snapshot") {
+
+        when {
+            process {
+                """
+                input[0] = [ [id: 'snap_test', language: 'English'], 'Hello' ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            // Snapshot the entire output channel.
+            // The .snap file will be stored at:
+            //   tests/say_hello.nf.test.snap
+            assert snapshot(process.out).match()
+        }
+    }
+
+    test("SAY_HELLO receives a sample with a multi-word greeting") {
+        when {
+            process {
+                """
+                input[0] = [ [id: 'sample_x', language: 'English'], 'Good morning' ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def output = process.out.result.get(0)
+            assert output[1]            == 'sample_x: Good morning'
+            assert output[0].language   == 'English'
+        }
+    }
+}

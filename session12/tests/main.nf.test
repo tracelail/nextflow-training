@@ -1,0 +1,87 @@
+/*
+ * tests/main.nf.test
+ *
+ * Pipeline-level tests for main.nf.
+ *
+ * These tests run the ENTIRE pipeline and make assertions about:
+ *   - whether the pipeline succeeded
+ *   - how many tasks ran
+ *   - the content of outputs
+ *
+ * Key concepts demonstrated here:
+ *   - nextflow_pipeline {} block
+ *   - when { params {} } for setting parameters
+ *   - workflow.success, workflow.trace assertions
+ *   - snapshot testing with assert snapshot(...).match()
+ */
+
+nextflow_pipeline {
+
+    name   "Test pipeline: main.nf"
+    script "../main.nf"
+
+    // ── Test 1: Basic — pipeline runs successfully ──────────────────────────
+    test("Pipeline should complete without failures") {
+
+        when {
+            params {
+                input  = "${projectDir}/data/samplesheet/greetings.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            // The pipeline should not fail
+            assert workflow.success
+
+            // We have 3 processes; SAY_HELLO + CONVERT_UPPER run once per
+            // sample (6 samples × 2 processes = 12 tasks), plus 1 for
+            // COLLECT_RESULTS = 13 tasks total.
+            assert workflow.trace.tasks().size() == 13
+
+            // All tasks succeeded — none failed or were cached
+            assert workflow.trace.succeeded().size() == 13
+            assert workflow.trace.failed().size()    == 0
+        }
+    }
+
+    // ── Test 2: Intermediate — single-sample samplesheet ───────────────────
+    test("Pipeline should handle a single-sample samplesheet") {
+
+        when {
+            params {
+                // Point to the minimal test samplesheet (created in data/)
+                input  = "${projectDir}/data/samplesheet/single_sample.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+
+            // 1 × SAY_HELLO + 1 × CONVERT_UPPER + 1 × COLLECT_RESULTS = 3
+            assert workflow.trace.tasks().size() == 3
+            assert workflow.trace.succeeded().size() == 3
+        }
+    }
+
+    // ── Test 3: Snapshot — stable pipeline output ──────────────────────────
+    test("Pipeline output should match snapshot") {
+
+        when {
+            params {
+                input  = "${projectDir}/data/samplesheet/greetings.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+            // On first run this creates tests/main.nf.test.snap
+            // On subsequent runs it compares against the stored snapshot.
+            // If you intentionally change pipeline logic, re-run with:
+            //   nf-test test tests/main.nf.test --update-snapshot
+            assert snapshot(workflow).match()
+        }
+    }
+}

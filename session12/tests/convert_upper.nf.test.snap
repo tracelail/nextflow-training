@@ -1,0 +1,45 @@
+{
+    "CONVERT_UPPER all outputs should match snapshot": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "sample_01",
+                            "language": "English"
+                        },
+                        "SAMPLE_01: HELLO"
+                    ],
+                    [
+                        {
+                            "id": "sample_02",
+                            "language": "French"
+                        },
+                        "SAMPLE_02: BONJOUR"
+                    ]
+                ],
+                "uppercased": [
+                    [
+                        {
+                            "id": "sample_01",
+                            "language": "English"
+                        },
+                        "SAMPLE_01: HELLO"
+                    ],
+                    [
+                        {
+                            "id": "sample_02",
+                            "language": "French"
+                        },
+                        "SAMPLE_02: BONJOUR"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-07T09:36:37.646772401"
+    }
+}

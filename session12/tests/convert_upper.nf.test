@@ -1,0 +1,103 @@
+/*
+ * tests/convert_upper.nf.test
+ *
+ * Process-level tests for CONVERT_UPPER.
+ *
+ * Demonstrates:
+ *   - Chaining from a prior process using setup {}
+ *   - Direct content assertions vs snapshot assertions
+ *   - Checking that metadata travels unchanged through a process
+ */
+
+nextflow_process {
+
+    name    "Test process: CONVERT_UPPER"
+    script  "../modules/local/convert_upper.nf"
+    process "CONVERT_UPPER"
+
+    // ── Test 1: Basic — uppercase transformation ───────────────────────────
+    test("CONVERT_UPPER should uppercase the input text") {
+
+        when {
+            process {
+                """
+                input[0] = [ [id: 'sample_01', language: 'English'], 'sample_01: Hello' ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.uppercased.size() == 1
+
+            def output = process.out.uppercased.get(0)
+
+            // Metadata should pass through unchanged
+            assert output[0].id       == 'sample_01'
+            assert output[0].language == 'English'
+
+            // Text should be fully uppercased
+            assert output[1] == 'SAMPLE_01: HELLO'
+        }
+    }
+
+    // ── Test 2: Intermediate — chaining with setup {} ──────────────────────
+    //
+    // In real pipelines, CONVERT_UPPER receives the output of SAY_HELLO.
+    // The setup {} block lets you run SAY_HELLO first, then feed its output
+    // directly into CONVERT_UPPER — mirroring the real workflow chain.
+    //
+    // NOTE: setup {} is convenient but reduces isolation. For production
+    // modules, prefer pre-generated test data files when possible.
+    test("CONVERT_UPPER should work on SAY_HELLO output via setup") {
+
+        setup {
+            run("SAY_HELLO") {
+                script "../modules/local/say_hello.nf"
+                process {
+                    """
+                    input[0] = [ [id: 'chain_test', language: 'French'], 'Bonjour' ]
+                    """
+                }
+            }
+        }
+
+        when {
+            process {
+                // SAY_HELLO.out.result is available here because of setup {}
+                """
+                input[0] = SAY_HELLO.out.result
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.uppercased.size() == 1
+
+            def output = process.out.uppercased.get(0)
+            assert output[0].id == 'chain_test'
+            assert output[1]    == 'CHAIN_TEST: BONJOUR'
+        }
+    }
+
+    // ── Test 3: Challenge — snapshot all outputs ───────────────────────────
+    test("CONVERT_UPPER all outputs should match snapshot") {
+
+        when {
+            process {
+                """
+                input[0] = channel.of(
+                    [ [id: 'sample_01', language: 'English'], 'sample_01: Hello'   ],
+                    [ [id: 'sample_02', language: 'French' ], 'sample_02: Bonjour' ]
+                )
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
+    }
+}

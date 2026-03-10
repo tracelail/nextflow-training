@@ -1,0 +1,19 @@
+{
+    "COLLECT_RESULTS summary should match snapshot": {
+        "content": [
+            {
+                "0": [
+                    "Processed 3 greetings: SAMPLE_01: HELLO | SAMPLE_02: BONJOUR | SAMPLE_03: HOLA"
+                ],
+                "summary": [
+                    "Processed 3 greetings: SAMPLE_01: HELLO | SAMPLE_02: BONJOUR | SAMPLE_03: HOLA"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-03-07T09:36:23.007904588"
+    }
+}
