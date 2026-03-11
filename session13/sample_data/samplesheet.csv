@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+CONTROL_REP1,sample_data/reads/CONTROL_REP1_1.fastq.gz,sample_data/reads/CONTROL_REP1_2.fastq.gz
+CONTROL_REP2,sample_data/reads/CONTROL_REP2_1.fastq.gz,sample_data/reads/CONTROL_REP2_2.fastq.gz
+TREATMENT_REP1,sample_data/reads/TREATMENT_REP1_1.fastq.gz,sample_data/reads/TREATMENT_REP1_2.fastq.gz

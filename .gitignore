@@ -1,0 +1,15 @@
+# Pipeline outputs
+**/results*/
+**/work/
+**/.nextflow/
+**/.nextflow.log*
+**/.nf-test/
+**/nf-test-output/
+**/sample_data/reads/
+**/nf-core-*-offline/
+
+# Fastq
+*.fastq
+*.fastq.gz
+
+

@@ -1,0 +1,4 @@
+{
+  "input": "sample_data/samplesheet.csv",
+  "outdir": "results_custom"
+}
