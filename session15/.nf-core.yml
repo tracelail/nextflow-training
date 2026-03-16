@@ -1,0 +1,15 @@
+bump_version: null
+lint: {}
+nf_core_version: 3.5.2
+org_path: null
+repository_type: pipeline
+template:
+  author: Jimmy
+  description: Session 15 training pipeline - nf-core modules
+  is_nfcore: false
+  name: session15
+  org: training
+  skip:
+    - actions_awsfulltest
+    - actions_awstest
+    - multiqc_config
