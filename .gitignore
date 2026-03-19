@@ -18,4 +18,5 @@
 
 # nf-core generated pipeline directory git objects
 # (if you want to track the pipeline code but not its nested git history)
-**/nf-core-greetings/.git/
+**/nf-core-greetings/.git/**/nf-core-*/
+session14/nf-core-greetings/
