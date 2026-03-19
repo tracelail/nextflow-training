@@ -38,12 +38,12 @@
 
 include { FASTQC  } from '../../modules/nf-core/fastqc/main'
 // TASK 1: Add the MULTIQC include statement
-// ???
+include { MULTIQC } from '../../modules/nf-core/multiqc/main'
 
 workflow {
 
     ch_reads = channel
-        .fromPath('../../assets/samplesheet.csv')
+        .fromPath('assets/samplesheet.csv')
         .splitCsv(header: true)
         .map { row ->
             def meta  = [ id: row.sample, single_end: false ]
@@ -60,18 +60,27 @@ workflow {
     // - Collect into a single list
     //   Hint: .collect()
     //
-    ch_multiqc_files = ??? // your channel transformation here
+    ch_multiqc_files = FASTQC.out.zip
+        .map { _meta, files -> files }
+        .collect() // your channel transformation here
+
+    ch_multiqc_input = ch_multiqc_files
+        .map {
+            files ->
+            [
+                [id: 'multiqc'],
+                files,
+                [],
+                [],
+                [],
+                []
+
+            ]
+        }
 
     // TASK 3: Call MULTIQC
     // Remember: 6 arguments. Only the first is required.
-    // MULTIQC(
-    //     ch_multiqc_files,
-    //     ???,  // multiqc_config
-    //     ???,  // extra_multiqc_config
-    //     ???,  // multiqc_logo
-    //     ???,  // replace_names
-    //     ???   // sample_names
-    // )
+    MULTIQC(ch_multiqc_input)
 
     // Verify the report was produced
     MULTIQC.out.report.view { report -> "MultiQC report: ${report}" }

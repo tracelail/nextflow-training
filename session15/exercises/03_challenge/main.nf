@@ -78,7 +78,7 @@ include { MULTIQC } from '../../modules/nf-core/multiqc/main'
 workflow {
 
     ch_reads = channel
-        .fromPath('../../assets/samplesheet.csv')
+        .fromPath('assets/samplesheet.csv')
         .splitCsv(header: true)
         .map { row ->
             def meta  = [ id: row.sample, single_end: false ]
@@ -87,23 +87,34 @@ workflow {
         }
 
     // FASTQC is skipped when params.skip_fastqc is true (via ext.when in config)
+    ch_reads.view { _meta, _reads -> "skip_fastqc param: ${params.skip_fastqc}" }
     FASTQC(ch_reads)
 
     // When FASTQC is skipped, FASTQC.out.zip emits nothing.
     // .ifEmpty([]) ensures MULTIQC still receives something (an empty list).
     ch_multiqc_files = FASTQC.out.zip
-        .map { meta, zips -> zips }
-        .collect()
+        .map { _meta, files -> files }
+        .collect() // your channel transformation here
         .ifEmpty([])
 
-    MULTIQC(
-        ch_multiqc_files,
-        [],
-        [],
-        [],
-        [],
-        []
-    )
+    ch_multiqc_input = ch_multiqc_files
+        .map {
+            files ->
+            [
+                [id: 'multiqc'],
+                files,
+                [],
+                [],
+                [],
+                []
+
+            ]
+        }
+
+    // TASK 3: Call MULTIQC
+    // Remember: 6 arguments. Only the first is required.
+    MULTIQC(ch_multiqc_input)
+
 
     workflow.onComplete {
         def skip_msg = params.skip_fastqc ? " (FastQC was skipped)" : ""
