@@ -1,0 +1,89 @@
+nextflow_process {
+
+    name "Test Process SEQTK_SEQ"
+    script "../main.nf"
+    process "SEQTK_SEQ"
+
+    // Tags let nf-test selectively run subsets of tests.
+    // The "modules" and "modules_nfcore" tags are required by nf-core convention.
+    tag "modules"
+    tag "modules_nfcore"
+    tag "seqtk"
+    tag "seqtk/seq"
+
+    // -----------------------------------------------------------------------
+    // Test 1: stub run (no real tool execution)
+    // Use this to validate module structure and output shapes without needing
+    // the actual binary.  Always include a stub test — it runs in CI without
+    // container/conda overhead.
+    // -----------------------------------------------------------------------
+    test("fastq single-end - stub") {
+
+        // options "-stub" activates the stub: block instead of script:
+        options "-stub"
+
+        when {
+            process {
+                """
+                // input[0] corresponds to the first (and only) input channel:
+                // tuple val(meta), path(reads)
+                input[0] = [
+                    [ id: 'test', single_end: true ],
+                    file("${projectDir}/../../../../test_data/sample1.fastq",
+                         checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            // assertAll() runs all assertions and reports ALL failures,
+            // rather than stopping at the first.
+            assertAll(
+                // Basic sanity: did the process complete without error?
+                { assert process.success },
+
+                // Snapshot the entire process.out object.
+                // On first run (--update-snapshot) this writes the .snap file.
+                // On subsequent runs it compares against the saved snapshot.
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Test 2: real run with conda/docker
+    // This test requires the seqtk binary to be available.  Skip it in
+    // environments without conda/docker by not tagging it "stub".
+    // -----------------------------------------------------------------------
+    test("fastq single-end - real") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'sample1', single_end: true ],
+                    file("${projectDir}/../../../../test_data/sample1.fastq",
+                         checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+
+                // Check the fasta output exists and starts with '>'
+                { assert process.out.fasta.size() == 1 },
+                { assert process.out.fasta[0][0].id == "sample1" },
+
+                // Check fasta content: first line should be a FASTA header
+                { assert path(process.out.fasta[0][1]).linesGzip[0].startsWith(">") },
+
+                // Snapshot for regression testing
+                { assert snapshot(process.out.fasta).match("fasta_output") }
+            )
+        }
+    }
+}

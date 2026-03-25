@@ -1,0 +1,64 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "seqtk_trimfq"
+description: |
+  Trim low-quality bases from the 5' and/or 3' ends of reads in FASTQ format
+  using seqtk trimfq.
+keywords:
+  - trimming
+  - quality
+  - fastq
+  - seqtk
+
+tools:
+  - seqtk:
+      description: "Toolkit for processing sequences in FASTA/FASTQ formats"
+      homepage: "https://github.com/lh3/seqtk"
+      documentation: "https://github.com/lh3/seqtk"
+      licence: ["MIT"]
+      identifier: biotools:seqtk
+      args_id: "$args"
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information.
+          e.g. [ id:'sample1', single_end:true ]
+    - reads:
+        type: file
+        description: |
+          Input reads in FASTQ format (may be gzip-compressed).
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/data_2044"
+          - edam: "http://edamontology.org/format_1930"
+
+output:
+  - trimmed:
+      - - meta:
+              type: map
+              description: Groovy Map containing sample information, passed through unchanged.
+        - "*.fastq.gz":
+              type: file
+              description: |
+                Quality-trimmed reads in gzip-compressed FASTQ format.
+              pattern: "*.fastq.gz"
+              ontologies:
+                - edam: "http://edamontology.org/format_1930"
+
+  - versions_seqtk:
+      - - "${task.process}":
+              type: string
+              description: The fully-qualified Nextflow process name
+        - seqtk:
+              type: string
+              description: The tool name
+        - "seqtk 2>&1 | grep '^Version' | sed 's/Version: //'":
+              type: string
+              description: The shell command used to capture the version string
+
+authors:
+  - "@yourusername"
+maintainers:
+  - "@yourusername"

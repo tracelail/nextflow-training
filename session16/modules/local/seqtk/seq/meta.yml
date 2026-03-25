@@ -1,0 +1,79 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "seqtk_seq"
+description: |
+  Convert FASTQ to FASTA format, and optionally apply per-base masking or
+  quality-based filtering using seqtk seq.
+keywords:
+  - fasta
+  - fastq
+  - conversion
+  - seqtk
+
+# Tools section: one entry per tool used in the process.
+# identifier: links to the bio.tools registry (https://bio.tools)
+# args_id: which $args variable controls this tool's CLI arguments
+tools:
+  - seqtk:
+      description: "Toolkit for processing sequences in FASTA/FASTQ formats"
+      homepage: "https://github.com/lh3/seqtk"
+      documentation: "https://github.com/lh3/seqtk"
+      licence: ["MIT"]
+      identifier: biotools:seqtk
+      args_id: "$args"
+
+# Input section uses channel-grouped format (July 2025 restructure).
+# Tuple channels use "- -" (double dash) nesting.
+# Single-value channels use a single "-".
+input:
+  # Channel 1: the [meta, reads] tuple
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information.
+          Keys must include at minimum: id (string, unique sample identifier).
+          e.g. [ id:'sample1', single_end:true ]
+    - reads:
+        type: file
+        description: |
+          Input reads in FASTQ format (may be gzip-compressed).
+          Single-end: one file.  Paired-end: list of two files.
+        pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/data_2044"    # Sequence reads (data type)
+          - edam: "http://edamontology.org/format_1930"  # FASTQ format
+
+# Output section mirrors the process output: block.
+# One top-level key per emit name.
+output:
+  # fasta: the converted FASTA output
+  - fasta:
+      - - meta:
+              type: map
+              description: |
+                Groovy Map containing sample information, passed through unchanged.
+        - "*.fasta.gz":
+              type: file
+              description: |
+                Sequences in gzip-compressed FASTA format.
+              pattern: "*.fasta.gz"
+              ontologies:
+                - edam: "http://edamontology.org/format_1929"  # FASTA format
+
+  # versions_seqtk: the topic channel version tuple
+  # This replaces the old versions.yml emit.
+  - versions_seqtk:
+      - - "${task.process}":
+              type: string
+              description: The fully-qualified Nextflow process name
+        - seqtk:
+              type: string
+              description: The tool name
+        - "seqtk 2>&1 | grep '^Version' | sed 's/Version: //'":
+              type: string
+              description: The shell command used to capture the version string
+
+authors:
+  - "@yourusername"
+maintainers:
+  - "@yourusername"

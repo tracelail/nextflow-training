@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
+
+# TODO 1: Add the channels list.
+# Channel order matters — conda-forge MUST come before bioconda.
+# channels:
+#   - TODO
+#   - TODO
+
+# TODO 2: Add the seqtk dependency.
+# Pin to channel::package=version format.
+# Use version 1.4.  Never include build strings.
+# dependencies:
+#   - "TODO::seqtk=TODO"

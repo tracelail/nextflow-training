@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "seqtk_trimfq"
+
+# TODO 1: Write a one-sentence description of what seqtk trimfq does.
+description: "TODO: describe the tool"
+
+# TODO 2: Add keywords relevant to trimming (e.g. trimming, quality, fastq)
+keywords:
+  - TODO
+
+tools:
+  - seqtk:
+      # TODO 3: Fill in description, homepage, and the identifier line.
+      # identifier uses the bio.tools registry ID: biotools:seqtk
+      description: "TODO"
+      homepage: "TODO"
+      documentation: "TODO"
+      licence: ["MIT"]
+      identifier: "TODO: biotools:seqtk"
+      args_id: "$args"
+
+input:
+  # TODO 4: Document the input tuple channel.
+  # Use the same structure as in seqtk/seq/meta.yml.
+  # The reads file should have EDAM ontology entries for:
+  #   data:  http://edamontology.org/data_2044   (Sequence reads)
+  #   format: http://edamontology.org/format_1930 (FASTQ)
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information.
+          e.g. [ id:'sample1', single_end:true ]
+    - reads:
+        type: file
+        description: "TODO: describe the input reads"
+        pattern: "TODO"
+        ontologies:
+          - edam: "TODO"
+          - edam: "TODO"
+
+output:
+  # TODO 5: Document the trimmed output channel.
+  # Output is gzip-compressed FASTQ.  Use EDAM format_1930.
+  - trimmed:
+      - - meta:
+              type: map
+              description: Groovy Map containing sample information, passed through unchanged.
+        - "*.fastq.gz":
+              type: file
+              description: "TODO: describe the trimmed output"
+              pattern: "*.fastq.gz"
+              ontologies:
+                - edam: "TODO"
+
+  # TODO 6: Document the topic channel version output.
+  # Copy the versions_seqtk block from seqtk/seq/meta.yml and adjust as needed.
+  - versions_seqtk:
+      - - "${task.process}":
+              type: string
+              description: The fully-qualified Nextflow process name
+        - seqtk:
+              type: string
+              description: The tool name
+        - "TODO: version capture command":
+              type: string
+              description: The shell command used to capture the version string
+
+# TODO 7: Add your GitHub handle.
+authors:
+  - "@yourusername"
+maintainers:
+  - "@yourusername"

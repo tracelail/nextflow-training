@@ -1,0 +1,45 @@
+{
+    "fastq single-end - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        "SEQTK_TRIMFQ",
+                        "seqtk",
+                        ""
+                    ]
+                ],
+                "trimmed": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_seqtk": [
+                    [
+                        "SEQTK_TRIMFQ",
+                        "seqtk",
+                        ""
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-03-24T21:18:10.340813937",
+        "meta": {
+            "nf-test": "0.9.4",
+            "nextflow": "25.10.4"
+        }
+    }
+}

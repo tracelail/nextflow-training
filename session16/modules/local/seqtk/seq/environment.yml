@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
+# Channel order matters: conda-forge MUST come before bioconda.
+# Dependencies are pinned to channel::package=version.
+# Never pin to a build string (the hash after the version) — builds vary by platform.
+# The "name:" field is intentionally absent — it broke Wave/Seqera Containers caching.
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - "bioconda::seqtk=1.4"

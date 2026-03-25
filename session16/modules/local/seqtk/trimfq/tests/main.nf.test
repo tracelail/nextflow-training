@@ -1,0 +1,51 @@
+nextflow_process {
+
+    name "Test Process SEQTK_TRIMFQ"
+    script "../main.nf"
+    process "SEQTK_TRIMFQ"
+
+    // Required tags for nf-core convention
+    tag "modules"
+    tag "modules_nfcore"
+    tag "seqtk"
+    tag "seqtk/trimfq"
+
+    // -----------------------------------------------------------------------
+    // TODO: Write a stub test for SEQTK_TRIMFQ.
+    //
+    // Steps:
+    //   1. Name it something descriptive, e.g. "fastq single-end - stub"
+    //   2. Add options "-stub" to activate the stub: block
+    //   3. In the when { process { ... } } block, provide input[0] as:
+    //         [ [ id: 'test', single_end: true ],
+    //           file("${projectDir}/../../../../test_data/sample1.fastq", checkIfExists: true) ]
+    //   4. In the then { ... } block, use assertAll() with:
+    //         { assert process.success }
+    //         { assert snapshot(process.out).match() }
+    //
+    // After writing the test, generate the snapshot:
+    //   nf-test test tests/main.nf.test --update-snapshot --profile conda
+    // -----------------------------------------------------------------------
+
+    test("fastq single-end - stub") {
+        options "-stub"
+
+        when {
+            process{
+                """
+                input[0] = [
+                    [ id: 'test', single_end: true],
+                    file("${projectDir}/../../../../test_data/sample1.fastq",
+                            checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
+    }
+
+}
