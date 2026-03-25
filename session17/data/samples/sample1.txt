@@ -1,0 +1,4 @@
+The quick brown fox jumps over the lazy dog.
+This is a simple text file for testing the word count pipeline.
+Each line contains words of varying lengths for analysis.
+Short words like a an the are common in English text.

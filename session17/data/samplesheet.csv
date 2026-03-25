@@ -1,0 +1,5 @@
+sample,data_file,condition,replicate
+sample1,data/samples/sample1.txt,tumor,1
+sample2,data/samples/sample2.txt,normal,1
+sample3,data/samples/sample3.txt,tumor,2
+sample4,data/samples/sample4.txt,normal,2

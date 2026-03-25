@@ -1,0 +1,79 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/training/session17/main/nextflow_schema.json",
+    "title": "Session 17 pipeline parameters",
+    "description": "Word count pipeline demonstrating nf-schema input validation.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.(csv|tsv)$",
+                    "description": "Path to comma-separated samplesheet with sample information.",
+                    "help_text": "The samplesheet must be a CSV or TSV file with the following columns: sample, data_file, condition, replicate. See assets/schema_input.json for the full specification.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where results will be saved.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "processing_options": {
+            "title": "Processing options",
+            "type": "object",
+            "fa_icon": "fas fa-cog",
+            "description": "Options that control how the pipeline processes data.",
+            "properties": {
+                "suffix": {
+                    "type": "string",
+                    "default": "counted",
+                    "pattern": "^[a-zA-Z0-9_-]+$",
+                    "errorMessage": "Suffix may only contain letters, numbers, underscores, and hyphens.",
+                    "description": "Suffix string appended to the output summary filename.",
+                    "help_text": "Only letters, numbers, underscores, and hyphens are allowed.",
+                    "fa_icon": "fas fa-tag"
+                },
+                "min_word_length": {
+                    "type": "integer",
+                    "default": 3,
+                    "minimum": 1,
+                    "maximum": 20,
+                    "description": "Minimum word length to count. Words shorter than this are excluded.",
+                    "fa_icon": "fas fa-ruler"
+                },
+                "condition_filter": {
+                    "type": "string",
+                    "default": "all",
+                    "enum": ["all", "tumor", "normal"],
+                    "description": "Process only samples with this condition, or 'all' for no filter.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address for pipeline completion notification.",
+                    "fa_icon": "fas fa-envelope",
+                    "hidden": true,
+                    "help_text": "Set this to receive notification when the pipeline finishes."
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "#/$defs/input_output_options" },
+        { "$ref": "#/$defs/processing_options" }
+    ]
+}

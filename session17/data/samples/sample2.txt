@@ -1,0 +1,4 @@
+Bioinformatics pipelines process large amounts of genomic data.
+Nextflow makes it easy to write scalable and reproducible workflows.
+The nf-core community provides high quality modules and pipelines.
+Validation ensures that inputs are correct before processing begins.

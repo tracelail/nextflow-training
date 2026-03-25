@@ -1,0 +1,4 @@
+sample,data_file,condition,replicate
+sample 1,data/samples/sample1.txt,tumor,1
+sample2,data/samples/sample2.txt,UNKNOWN,1
+sample3,data/samples/missing_file.txt,tumor,abc

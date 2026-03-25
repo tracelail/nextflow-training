@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/training/session17/main/assets/schema_input.json",
+    "title": "Session 17 samplesheet schema (Exercise 2 solution)",
+    "description": "Schema with dependentRequired and uniqueEntries across multiple columns.",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "sample": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]+$",
+                "errorMessage": "Sample name must not be empty and may only contain letters, numbers, underscores, and hyphens.",
+                "meta": ["id"]
+            },
+            "data_file": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.txt$",
+                "errorMessage": "data_file must be a path to an existing .txt file."
+            },
+            "condition": {
+                "type": "string",
+                "enum": ["tumor", "normal"],
+                "errorMessage": "condition must be 'tumor' or 'normal'.",
+                "meta": ["condition"]
+            },
+            "replicate": {
+                "type": "integer",
+                "minimum": 1,
+                "errorMessage": "replicate must be a positive integer.",
+                "meta": ["replicate"]
+            },
+            "paired_file": {
+                "type": "string",
+                "format": "file-path",
+                "exists": true,
+                "pattern": "^\\S+\\.txt$",
+                "errorMessage": "paired_file must be an existing .txt file.",
+                "meta": ["paired"]
+            }
+        },
+        "required": ["sample", "data_file", "condition", "replicate"],
+        "dependentRequired": {
+            "paired_file": ["data_file"]
+        }
+    },
+    "allOf": [
+        {
+            "uniqueEntries": ["sample", "replicate"]
+        }
+    ]
+}

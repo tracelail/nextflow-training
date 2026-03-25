@@ -1,0 +1,4 @@
+Reproducible research requires careful tracking of software versions.
+Container technologies like Docker and Singularity ensure consistency.
+The meta map pattern carries sample metadata through every process.
+Good pipeline design separates data processing from output management.

@@ -1,0 +1,79 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/training/session17/main/nextflow_schema.json",
+    "title": "Session 17 pipeline parameters (Exercise 3 solution)",
+    "description": "Word count pipeline — extended schema with custom validation rules.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.(csv|tsv)$",
+                    "description": "Path to comma-separated samplesheet.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where results will be saved.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "processing_options": {
+            "title": "Processing options",
+            "type": "object",
+            "fa_icon": "fas fa-cog",
+            "description": "Options that control how the pipeline processes data.",
+            "properties": {
+                "suffix": {
+                    "type": "string",
+                    "default": "counted",
+                    "pattern": "^[a-zA-Z0-9_-]+$",
+                    "errorMessage": "suffix may only contain letters, numbers, underscores, and hyphens.",
+                    "description": "Suffix appended to the output summary filename.",
+                    "fa_icon": "fas fa-tag"
+                },
+                "min_word_length": {
+                    "type": "integer",
+                    "default": 3,
+                    "minimum": 1,
+                    "maximum": 20,
+                    "errorMessage": "min_word_length must be an integer between 1 and 20.",
+                    "description": "Minimum word length to include in counts.",
+                    "fa_icon": "fas fa-ruler"
+                },
+                "condition_filter": {
+                    "type": "string",
+                    "default": "all",
+                    "enum": ["all", "tumor", "normal"],
+                    "errorMessage": "condition_filter must be one of: all, tumor, normal.",
+                    "description": "Process only samples matching this condition.",
+                    "fa_icon": "fas fa-filter"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address to notify on pipeline completion.",
+                    "fa_icon": "fas fa-envelope",
+                    "hidden": true,
+                    "help_text": "Set this to receive an email when the pipeline finishes. Requires your institution's mail server to be configured."
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "#/$defs/input_output_options" },
+        { "$ref": "#/$defs/processing_options" }
+    ]
+}

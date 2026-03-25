@@ -1,0 +1,4 @@
+Schema validation catches errors early in the pipeline execution.
+JSON Schema defines rules for valid parameter values and types.
+The nf-schema plugin implements parameter and samplesheet validation.
+Two phase validation checks parameters first then samplesheet contents.
