@@ -1,0 +1,5 @@
+sample,fastq_1,fastq_2,strandedness
+SAMPLE_01,data/SAMPLE_01_R1.fastq.gz,data/SAMPLE_01_R2.fastq.gz,forward
+SAMPLE_02,data/SAMPLE_02_R1.fastq.gz,data/SAMPLE_02_R2.fastq.gz,reverse
+SAMPLE_03,data/SAMPLE_03_R1.fastq.gz,data/SAMPLE_03_R2.fastq.gz,auto
+SAMPLE_04,data/SAMPLE_04_R1.fastq.gz,data/SAMPLE_04_R2.fastq.gz,unstranded
