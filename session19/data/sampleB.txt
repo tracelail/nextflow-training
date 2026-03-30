@@ -1,0 +1,3 @@
+Channels carry data between processes automatically
+The meta map pattern keeps sample metadata together
+Workflow outputs centralise all publish decisions

@@ -1,0 +1,3 @@
+The quick brown fox jumps over the lazy dog
+This is sample A with some words to count
+Nextflow pipelines process data in parallel

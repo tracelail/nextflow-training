@@ -1,0 +1,3 @@
+Topic channels eliminate manual version mixing boilerplate
+The eval qualifier captures tool output after the script runs
+Data lineage tracks provenance for every published file
